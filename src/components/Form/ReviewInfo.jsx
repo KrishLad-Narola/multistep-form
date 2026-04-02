@@ -1,56 +1,43 @@
+import { ClassNames } from '@emotion/react';
 import {
   Typography,
-  List,
-  ListItem,
-  ListItemText
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer,
+  Paper
 } from '@mui/material';
 
 const ReviewInfo = ({ formik }) => {
   const { values } = formik;
+
+  const rows = [
+    { label: 'Email', value: values.email, section: 'Account Details' },
+    { label: 'First Name', value: values.firstName, section: 'Personal Information' },
+    { label: 'Last Name', value: values.lastName, section: 'Personal Information' },
+    { label: 'Phone Number', value: values.phone, section: 'Personal Information' },
+    { label: 'Residence', value: values.residence, section: 'Personal Information' }
+  ];
+
   return (
     <>
-      <Typography variant="overline" >
-        Account Details
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText
-            primary="Email"
-            secondary={values.email}
-          />
-        </ListItem>
-      </List>
-      <Typography variant="overline">
-        Personal Information
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText
-            primary="First Name"
-            secondary={values.firstName}
-          />
-        </ListItem>
-        <ListItem>
-          <ListItemText
-            primary="Last Name"
-            secondary={values.lastName}
-          />
-        </ListItem>
-        <ListItem>
-          <ListItemText
-            primary="Phone Number"
-            secondary={values.phone}
-          />
-        </ListItem>
-        <ListItem>
-          <ListItemText
-            primary="Residence"
-            secondary={values.residence}
-          />
-        </ListItem>
-      </List>
-    </>
-  )
-}
+      <Typography variant="overline">Review Information</Typography>
 
-export default ReviewInfo
+      <TableContainer component={Paper}>
+        <Table className="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+          <TableBody className="w-full p-3 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            {rows.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell><strong>{row.label}</strong></TableCell>
+                <TableCell>{row.value || '-'}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
+  );
+};
+
+export default ReviewInfo;
