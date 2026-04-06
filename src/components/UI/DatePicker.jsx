@@ -9,9 +9,9 @@ export default function BasicDatePicker() {
     <Box sx={{border:1 , padding:2 ,borderColor:'silver' , borderRadius:1 , width:"100%"}}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DemoContainer components={['DatePicker']}>
-        <DatePicker label="Date of Birth" />
+        <DatePicker  label="Date of Birth" />
       </DemoContainer>
     </LocalizationProvider>
-    </Box>
+     </Box>
   );
 }
