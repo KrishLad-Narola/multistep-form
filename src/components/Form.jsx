@@ -29,10 +29,15 @@ const steps = [
 
 const validationSchemas = [
   Yup.object({
-    firstName: Yup.string().required('First name is required')
-    .matches(/^[A-Za-z]+$/, 'Numbers and special characters are not allowed'),
-    lastName: Yup.string().required('Last name is required')
-    .matches(/^[A-Za-z]+$/, 'Numbers and special characters are not allowed'),
+    firstName: Yup.string()
+      .required('First name is required')
+      .matches(/^[A-Za-z]+$/, 'Only letters allowed'),
+    lastName: Yup.string()
+      .required('Last name is required')
+      .matches(/^[A-Za-z]+$/, 'Only letters allowed'),
+    email: Yup.string()
+      .required('Email is required')
+      .email('Invalid email'),
     phone: Yup.string().required('Phone is required'),
     addressInfo: Yup.string().required('Address is required'),
   }),
@@ -42,21 +47,20 @@ const validationSchemas = [
     degreeName: Yup.string().required('Degree is required'),
   }),
   Yup.object({
-    email: Yup.string().required('Email is required')
-      .email('Invalid email'),
-    accountholderName: Yup.string().required('Enter The AccountHolderName'),
-    brachName: Yup.string().required('Enter Your Branch Name'),
-    accountNumber: Yup.string().required('Enter valid Account Number'),
-    ifscCode: Yup.string().required('Enter your IFSCCode'),
-    brachAddress: Yup.string().required('Enter your Branch Name')
+    accountholderName: Yup.string().required('Enter Account Holder Name'),
+    brachName: Yup.string().required('Enter Branch Name'),
+    accountNumber: Yup.string().required('Enter Account Number'),
+    ifscCode: Yup.string().required('Enter IFSC Code'),
+    brachAddress: Yup.string().required('Enter Branch Address')
   }),
   Yup.object({
-    passWord: Yup.string().min(8, 'Min 8 characters')
+    passWord: Yup.string()
+      .min(8, 'Minimum 8 characters')
       .required('Password is required'),
-    confirmPassword: Yup.string().oneOf([Yup.ref('passWord')], 'PassWord do not match')
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('passWord')], 'Passwords do not match')
       .required('Confirm Password is required'),
   }),
-  Yup.object({})
 ];
 
 const Form = () => {
@@ -78,29 +82,29 @@ const Form = () => {
       accountNumber: '',
       brachAddress: '',
       accountholderName: '',
-      branchName: '',
+      brachName: '',
     },
-
-    validationSchema: validationSchemas[activeStep],
+    validationSchema: validationSchemas[activeStep] || Yup.object({}),
     onSubmit: (values) => {
-      if (activeStep === steps.length - 1) {
-        // console.log('Final Form Data:', values);
-         console.log('Final Form Data:', values);
-      alert("Registration Successful!");
-      // formik.resetForm();
-      // window.location.reload();
-      }
+      console.log('Final Form Data:', values);
+      alert('Registration Successful!');
+      window.location.reload();
     }
   });
 
-  const handleNext = () => setActiveStep((prev) => prev + 1);
-  const handleBack = () => setActiveStep((prev) => prev - 1);
+  const handleBack = () => {
+    setActiveStep((prev) => prev - 1);
+  };
 
   const handleNextStep = async () => {
     const errors = await formik.validateForm();
-    console.log("errors", errors)
+
     if (Object.keys(errors).length === 0) {
-      handleNext();
+      if (activeStep === steps.length - 1) {
+        formik.handleSubmit();
+      } else {
+        setActiveStep((prev) => prev + 1);
+      }
     } else {
       const touched = {};
       Object.keys(errors).forEach((key) => (touched[key] = true));
@@ -129,6 +133,7 @@ const Form = () => {
     <Box
       sx={{
         minHeight: '100vh',
+        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f5f5f5',
@@ -156,8 +161,9 @@ const Form = () => {
           ))}
         </Stepper>
 
-        <form onSubmit={formik.handleSubmit}> 
+        <form onSubmit={formik.handleSubmit}>
           <Grid container spacing={2}>
+            
             <Grid item xs={12}>
               {formContent(activeStep)}
             </Grid>
@@ -170,8 +176,7 @@ const Form = () => {
               </Grid>
             )}
 
-            <Grid item xs={12} sx={{ mt: 4}}>
-             
+            <Grid item xs={12} sx={{ mt: 4 }}>
               <Box sx={{ display: 'flex', gap: 2 }}>
 
                 <Button
@@ -188,35 +193,22 @@ const Form = () => {
                   Back
                 </Button>
 
-                {activeStep === steps.length - 1 ? (
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    fullWidth
-                    sx={{
-                      py: 1.5,
-                      fontWeight: 'bold',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    Submit
-                  </Button>
-                ) : (
-                  <Button
-                    variant="contained"
-                    fullWidth 
-                    onClick={handleNextStep}
-                    sx={{
-                      py: 1.5, 
-                      fontWeight: 'bold',
-                      textTransform: 'uppercase'
-                    }}
-                  >
-                    Next
-                  </Button>
-                )}
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={handleNextStep}
+                  sx={{
+                    py: 1.5,
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase'
+                  }}
+                >
+                  {activeStep === steps.length - 1 ? 'Submit' : 'Next'}
+                </Button>
+
               </Box>
             </Grid>
+
           </Grid>
         </form>
       </Paper>
