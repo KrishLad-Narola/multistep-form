@@ -15,15 +15,16 @@ const AccountDetails = (props) => {
         <TextField
           required
           id="outlined-basic"
-          name="AccountHolderName"
+          name="accountholderName"
           label="Account Holder Name"
           variant="outlined"
           size='small'
           type="name"
           fullWidth
-          error={Boolean(formik.touched.AccountHolderName && formik.errors.AccountHolderName)}
+          error={Boolean(formik.touched.accountholderName && formik.errors.accountholderName)}
           onChange={formik.handleChange}
-          value={formik.values.AccountHolderName}
+          value={formik.values.accountholderName}
+          helperText={formik.touched.accountholderName && formik.errors.accountholderName}
         />
       </Grid>
 
@@ -35,15 +36,17 @@ const AccountDetails = (props) => {
         <TextField
           required
           id="outlined-basic"
-          name="BrachName"
+          name="brachName"
           label="Brach Name"
           variant="outlined"
           size="small"
           type="Text"
           fullWidth
-          error={Boolean(formik.touched.BrachName && formik.errors.BrachName)}
+          error={Boolean(formik.touched.brachName && formik.errors.brachName)}
           onChange={formik.handleChange}
-          value={formik.values.BrachName}
+          value={formik.values.brachName}
+          helperText={formik.touched.brachName && formik.errors.brachName}
+          
         />
 
       </Grid>
@@ -56,23 +59,20 @@ const AccountDetails = (props) => {
         <TextField
           required
           id="outlined-basic"
-          name="AccountNumber"
-          label="AccountNumber"
+          name="accountNumber"
+          label="accountNumber"
           variant="outlined"
           size="small"
           fullWidth
-          type="AccountNumber"
-          error={Boolean(formik.touched.AccountNumber && formik.errors.AccountNumber)}
+          type="accountNumber"
+          error={Boolean(formik.touched.accountNumber && formik.errors.accountNumber)}
           onChange={formik.handleChange}
-          value={formik.values.AccountNumber}
+          value={formik.values.accountNumber}
+          helperText={formik.touched.accountNumber && formik.errors.accountNumber}
         />
 
       </Grid>
 
-
-        
-
- 
       <Grid
         size={12}
         item
@@ -81,20 +81,18 @@ const AccountDetails = (props) => {
         <TextField
           required
           id="outlined-basic"
-          name="IFSCCode"
-          label="IFSCCode"
+          name="ifscCode"
+          label="ifscCode"
           variant="outlined"
           size="small"
           fullWidth
           type="Code"
-          error={Boolean(formik.touched.IFSCCode && formik.errors.IFSCCode)}
+          error={Boolean(formik.touched.ifscCode && formik.errors.ifscCode)}
           onChange={formik.handleChange}
-          value={formik.values.IFSCCode}
+          value={formik.values.ifscCode}
+          helperText={formik.touched.ifscCode && formik.errors.ifscCode}
         />
       </Grid>
-
-
-
 
       <Grid
         size={12}
@@ -104,15 +102,16 @@ const AccountDetails = (props) => {
         <TextField
           required
           id="outlined-basic"
-          name="BrachAddress"
+          name="brachAddress"
           label="Brach Address"
           variant="outlined"
           size="small"
           fullWidth
           type="text"
-          error={Boolean(formik.touched.BrachAddress && formik.errors.BrachAddress)}
+          error={Boolean(formik.touched.brachAddress && formik.errors.brachAddress)}
           onChange={formik.handleChange}
-          value={formik.values.BrachAddress}
+          value={formik.values.brachAddress}
+          helperText={formik.touched.brachAddress && formik.errors.brachAddress}
         />
 
       </Grid>

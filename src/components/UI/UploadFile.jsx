@@ -15,7 +15,7 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-export default function InputFileUpload() {
+export default function InputFileUpload({label}) {
   return (
     <Box sx={{border:1 ,padding:2 , borderColor:'silver' ,  borderRadius:1 , width:'100%'}}>
     <Button
@@ -25,11 +25,11 @@ export default function InputFileUpload() {
       tabIndex={-1}
       startIcon={<CloudUploadIcon />}
     >
-       Upload Prof 
+       {label}
       <VisuallyHiddenInput
         type="file"
         lable='UplodeFile'
-        onChange={(event) => console.log(event.target.files)}
+        onChange={(event) => console.log(event.target.files[0])}
         multiple
       />
     </Button>

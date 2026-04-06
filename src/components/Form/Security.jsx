@@ -19,15 +19,15 @@ const { formik } = props;
         <TextField
           required
           id="outlined-basic"
-          name="PassWord"
-          label="PassWord"
+          name="passWord"
+          label="passWord"
           variant="outlined"
           size='small'
           fullWidth
-          value={formik.values.PassWord}
+          value={formik.values.passWord}
           onChange={formik.handleChange}
-          error={formik.touched.PassWord && Boolean(formik.errors.PassWord)}
-          helperText={formik.touched.PassWord && formik.errors.PassWord}
+          error={formik.touched.passWord && Boolean(formik.errors.passWord)}
+          helperText={formik.touched.passWord && formik.errors.passWord}
         />
 
 
@@ -41,15 +41,15 @@ const { formik } = props;
         <TextField
           required
           id="outlined-basic"
-          name="ConfirmPassWord"
+          name="confirmPassword"
           label="Confirm PassWord"
           variant="outlined"
           size='small'
           fullWidth
-          value={formik.values.ConfirmPassWord}
+          value={formik.values.confirmPassword}
           onChange={formik.handleChange}
-          error={formik.touched.ConfirmPassWord && Boolean(formik.errors.ConfirmPassWord)}
-          helperText={formik.touched.ConfirmPassWord && formik.errors.ConfirmPassWord}
+          error={formik.touched.confirmPassword && Boolean(formik.errors.confirmPassword)}
+          helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
         />
 
 

@@ -70,16 +70,16 @@ const EducationInfo = (props) => {
                 <TextField
                     required
                     id="outlined-basic"
-                    name="EnrollmentNo"
+                    name="enrollmentNo"
                     label="Enrollment Number"
                     variant="outlined"
-                    type="EnrollmentNo"
+                    type="enrollmentNo"
                     fullWidth
-                    size="small"
-                    value={formik.values.phone}
+                    size="small"                    
+                    value={formik.values.enrollmentNo}
                     onChange={formik.handleChange}
-                    error={formik.touched.phone && Boolean(formik.errors.phone)}
-                    helperText={formik.touched.phone && formik.errors.phone}
+                    error={formik.touched.enrollmentNo && Boolean(formik.errors.enrollmentNo)}
+                    helperText={formik.touched.enrollmentNo && formik.errors.enrollmentNo}
                 />
 
 
@@ -94,15 +94,15 @@ const EducationInfo = (props) => {
                 <TextField
                     required
                     id="outlined-basic"
-                    name="InstituteName"
+                    name="instituteName"
                     label="Institute Name"
                     variant="outlined"
                     size="small"
                     fullWidth
-                    value={formik.values.residence}
+                    value={formik.values.instituteName}
                     onChange={formik.handleChange}
-                    error={formik.touched.residence && Boolean(formik.errors.residence)}
-                    helperText={formik.touched.residence && formik.errors.residence}
+                    error={formik.touched.instituteName && Boolean(formik.errors.instituteName)}
+                    helperText={formik.touched.instituteName && formik.errors.instituteName}
                 />
 
             </Grid>
@@ -118,20 +118,21 @@ const EducationInfo = (props) => {
                 <TextField
                     required
                     id="outlined-basic"
-                    name="DegreeName "
-                    label="Degree Full Name or other CertificateName"
+                    name="degreeName"
+                    label="Degree Name"
                     variant="outlined"
                     size="small"
                     fullWidth
-                    value={formik.values.residence}
+                    value={formik.values.degreeName}
                     onChange={formik.handleChange}
-                    error={formik.touched.residence && Boolean(formik.errors.residence)}
-                    helperText={formik.touched.residence && formik.errors.residence}
+                    error={formik.touched.degreeName && Boolean(formik.errors.degreeName)}
+                    helperText={formik.touched.degreeName && formik.errors.degreeName}
                 />
+
 
             </Grid>
 
-            <InputFileUpload />
+            <InputFileUpload  label="Profile Picture Upload" formField="PersonalInfo.profilePicture" accept="image/jpg, image/jpeg, image/png"/>
             
         </Grid>
     )

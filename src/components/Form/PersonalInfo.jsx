@@ -7,6 +7,7 @@ import RowRadioButtonsGroup from '../UI/GenderButton';
 const PersonalInfo = (props) => {
 
 
+
   const { formik } = props;
   return (
     <Grid
@@ -52,7 +53,7 @@ const PersonalInfo = (props) => {
           fullWidth
           value={formik.values.lastName}
           onChange={formik.handleChange}
-          error={formik.touched.lastName && Boolean(formik.errors.lastNamel)}
+          error={formik.touched.lastName && Boolean(formik.errors.lastName)}
           helperText={formik.touched.lastName && formik.errors.lastName}
         />
 
@@ -90,16 +91,16 @@ const PersonalInfo = (props) => {
         <TextField
           required
           id="outlined-basic"
-          name="AddressInfo"
+          name="addressInfo"
           label="Address Info"
           variant="outlined"
-          type="AddressInfo"
+          type="addressInfo"
           fullWidth
           size="small"
-          value={formik.values.AddressInfo}
+          value={formik.values.addressInfo}
           onChange={formik.handleChange}
-          error={formik.touched.AddressInfo && Boolean(formik.errors.AddressInfo)}
-          helperText={formik.touched.AddressInfo && formik.errors.AddressInfo}
+          error={formik.touched.addressInfo && Boolean(formik.errors.addressInfo)}
+          helperText={formik.touched.addressInfo && formik.errors.addressInfo}
         />
 
       </Grid>
@@ -121,6 +122,7 @@ const PersonalInfo = (props) => {
           error={Boolean(formik.touched.email && formik.errors.email)}
           onChange={formik.handleChange}
           value={formik.values.email}
+          helperText={formik.touched.email && formik.errors.email}
         />
       </Grid>
 
@@ -128,7 +130,7 @@ const PersonalInfo = (props) => {
       <RowRadioButtonsGroup />
   
 
-      <InputFileUpload/>
+      <InputFileUpload  label="Profile Picture Upload" formField="PersonalInfo.profilePicture" accept="image/jpg, image/jpeg, image/png"/>
 
     </Grid>
 
